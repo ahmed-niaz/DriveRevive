@@ -1,25 +1,69 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from '../../assets/logo.svg'
+import logo from "../../assets/logo.svg";
 
 const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to='/'>Home</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#FF3811] bg-none text-sm font-bold"
+              : "text-sm font-bold"
+          }
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to='about'>About</NavLink>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#FF3811] bg-none text-sm font-bold"
+              : "text-sm font-bold"
+          }
+        >
+          About
+        </NavLink>
       </li>
       <li>
-        <NavLink to='services'>Services</NavLink>
+        <NavLink
+          to="/services"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#FF3811] bg-none text-sm font-bold"
+              : "text-sm font-bold"
+          }
+        >
+          Services
+        </NavLink>
       </li>
       <li>
-        <NavLink to='blog'>Blog</NavLink>
+        <NavLink
+          to="/blog"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#FF3811] bg-none text-sm font-bold"
+              : "text-sm font-bold"
+          }
+        >
+          Blog
+        </NavLink>
       </li>
       <li>
-        <NavLink to='contact'>Contact</NavLink>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#FF3811] bg-none text-sm font-bold"
+              : "text-sm font-bold"
+          }
+        >
+          Contact
+        </NavLink>
       </li>
-     
     </>
   );
   return (
@@ -27,7 +71,7 @@ const Navbar = () => {
       <div className="navbar ">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -45,21 +89,30 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 font-semibold shadow text-[#FF3811] rounded-box w-52"
             >
               {links}
             </ul>
           </div>
-          <Link to='/' className="text-xl flex flex-col items-center justify-center">
-                <img className="w-3/4 items-center border bg-transparent border-none" src={logo} alt={logo} />
-                <p className="font-extrabold text-sm">Drive Revive</p>
+          <Link
+            to="/"
+            className="text-xl flex flex-col items-center justify-center"
+          >
+            <img
+              className="w-3/4 items-center border bg-transparent border-none"
+              src={logo}
+              alt={logo}
+            />
+            <p className="font-extrabold text-sm">Drive Revive</p>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn border-2 bg-white text-[#FF3811] border-[#FF3811] hover:bg-[#FF3811] hover:border-none hover:text-white font-bold">Appointment</a>
+          <a className="btn btn-outline bg-white text-[#FF3811] border-[#FF3811] hover:bg-[#FF3811] hover:border-none hover:text-white font-bold">
+            Appointment
+          </a>
         </div>
       </div>
     </main>
