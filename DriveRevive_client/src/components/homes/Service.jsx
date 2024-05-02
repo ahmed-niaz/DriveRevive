@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import ServiceCard from "../ServiceCard";
+import Loader from "../Loader";
 
 const Service = () => {
   const [offers, setOffers] = useState([]);
-  console.log(offers);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch(`services.json`)
       .then((res) => res.json())
       .then((data) => {
         setOffers(data);
+        setLoading(false);
       });
   }, []);
   return (
@@ -21,15 +23,21 @@ const Service = () => {
           humour, or randomised words which don`t look even slightly believable.{" "}
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {offers.map((service) => (
-        <ServiceCard key={service._id} serve={service} />
-      ))}
-      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {offers.map((service) => (
+            <ServiceCard key={service._id} serve={service} />
+          ))}
+        </div>
+      )}
 
       <div className="flex justify-center mt-8 mb-24">
-            <button className="btn btn-outline border-[#DD3811]">More Service</button>
-        </div>
+        <button className="btn btn-outline border-[#DD3811]">
+          More Service
+        </button>
+      </div>
     </main>
   );
 };
