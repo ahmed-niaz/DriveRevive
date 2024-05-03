@@ -2,7 +2,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 const ServiceCard = ({ serve }) => {
-  const { title, img, price } = serve;
+  const {_id, title, img, price } = serve;
   return (
     <main>
       <div className="card w-full bg-base-100 shadow-xl">
@@ -13,7 +13,7 @@ const ServiceCard = ({ serve }) => {
           <h2 className="card-title">{title}</h2>
           <div className="flex text-[#FF3811] font-bold">
             <p>Price: ${price}</p>
-            <Link className="text-[#FF3811] font-bold">
+            <Link to={`/checkout/${_id}`} className="text-[#FF3811] font-bold">
               <FaLongArrowAltRight />
             </Link>
           </div>

@@ -8,12 +8,11 @@ import {
   signOut,
 } from "firebase/auth";
 
-
 export const AuthContext = createContext(null);
 const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  
+
   const loginUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
@@ -22,10 +21,10 @@ const FirebaseProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-  const logOut =()=>{
-    setLoading(true)
-    return signOut(auth)
-  }
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
   // manage User
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -38,7 +37,14 @@ const FirebaseProvider = ({ children }) => {
     };
   }, []);
 
-  const information = { user, setUser, loginUser, registerUser ,loading,logOut};
+  const information = {
+    user,
+    setUser,
+    loginUser,
+    registerUser,
+    loading,
+    logOut,
+  };
   return (
     <AuthContext.Provider value={information}>{children}</AuthContext.Provider>
   );

@@ -6,7 +6,7 @@ const Service = () => {
   const [offers, setOffers] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`services.json`)
+    fetch(`http://localhost:3000/services`)
       .then((res) => res.json())
       .then((data) => {
         setOffers(data);

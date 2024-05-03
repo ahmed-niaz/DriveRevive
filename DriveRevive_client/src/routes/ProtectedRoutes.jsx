@@ -11,7 +11,7 @@ const ProtectedRoutes = ({ children }) => {
   if (user) {
     return children;
   }
-  return <Navigate to="/login" />;
+  return <Navigate to="/login" replace/>;
 };
 ProtectedRoutes.propTypes = {
   children: PropTypes.node.isRequired,

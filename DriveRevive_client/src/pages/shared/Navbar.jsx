@@ -1,7 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.svg";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const {user,logOut} = useAuth()
   const links = (
     <>
       <li>
@@ -40,6 +42,20 @@ const Navbar = () => {
           Services
         </NavLink>
       </li>
+      {
+        user.email && (  <li>
+        <NavLink
+          to="/booking"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#FF3811] bg-none text-sm font-bold"
+              : "text-sm font-bold"
+          }
+        >
+          Booking
+        </NavLink>
+      </li>)
+      }
       <li>
         <NavLink
           to="/blog"
@@ -110,9 +126,13 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <Link to='/login' className="btn btn-outline bg-white text-[#FF3811] border-[#FF3811] hover:bg-[#FF3811] hover:border-none hover:text-white font-bold">
+         {
+          user?.email ?  <Link to='/login' onClick={logOut} className="btn btn-outline bg-white text-[#FF3811] border-[#FF3811] hover:bg-[#FF3811] hover:border-none hover:text-white font-bold">
+          Logout
+        </Link> :  <Link to='/login' className="btn btn-outline bg-white text-[#FF3811] border-[#FF3811] hover:bg-[#FF3811] hover:border-none hover:text-white font-bold">
             Appointment
           </Link>
+         }
         </div>
       </div>
     </main>

@@ -18,7 +18,7 @@ const AppointedNavbar = () => {
       </li>
       <li>
         <NavLink
-          to="/about"
+          to="/"
           className={({ isActive }) =>
             isActive
               ? "text-[#FF3811] bg-none text-sm font-bold"
