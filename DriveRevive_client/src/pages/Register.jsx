@@ -3,6 +3,7 @@ import login from "../assets/images/login/login.svg";
 import SocialLogin from "../components/SocialLogin";
 
 import useAuth from "./../hooks/useAuth";
+import Navbar from "./shared/Navbar";
 
 const Register = () => {
   const { registerUser } = useAuth();
@@ -18,7 +19,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        form.reset()
+        form.reset();
       })
       .catch((error) => {
         console.log(error.message);
@@ -26,6 +27,7 @@ const Register = () => {
   };
   return (
     <main>
+      <Navbar />
       <div className="flex container mx-auto gap-8 ">
         <div className="w-1/2 mx-auto flex justify-center p-24">
           <img src={login} alt="" />
@@ -73,9 +75,11 @@ const Register = () => {
                 />
               </div>
               <div className="form-control mt-6">
-                <button className="btn glass bg-[#DD3811] text-white font-bold">
-                  Sign up
-                </button>
+                <Link to="/">
+                  <button className="btn glass bg-[#DD3811] text-white font-bold w-full">
+                    Sign up
+                  </button>
+                </Link>
               </div>
               <div className="divider w-full mx-auto">or Sign In with</div>
               <SocialLogin />

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import login from "../assets/images/login/login.svg";
 import SocialLogin from "../components/SocialLogin";
+import Navbar from "./shared/Navbar";
 
 
 const Login = () => {
@@ -14,7 +15,7 @@ const Login = () => {
   }
   return (
     <main>
-     
+     <Navbar/>
       <div className="flex container mx-auto gap-8 ">
         <div className="w-1/2 mx-auto flex justify-center p-24">
           <img src={login} alt="" />

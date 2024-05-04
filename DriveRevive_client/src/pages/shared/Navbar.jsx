@@ -43,7 +43,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       {
-        user.email && (  <li>
+        user?.email && (  <li>
         <NavLink
           to="/booking"
           className={({ isActive }) =>

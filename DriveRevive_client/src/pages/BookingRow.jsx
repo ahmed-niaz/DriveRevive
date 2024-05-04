@@ -1,12 +1,15 @@
-import PropTypes from 'prop-types'
-import Swal from 'sweetalert2';
-const BookingRow = ({ booking,handleDelete }) => {
-  const { _id,img, customer_name, price, service, date } = booking;
- 
+import PropTypes from "prop-types";
+
+const BookingRow = ({ booking, handleDelete ,handleConfirm}) => {
+  const { _id, img, customer_name, price, service, date,status } = booking;
+
   return (
     <tr className="">
       <th>
-        <button onClick={()=>handleDelete(_id)} className="btn btn-circle btn-sm bg-[#DD3811] text-white outline-none">
+        <button
+          onClick={() => handleDelete(_id)}
+          className="btn btn-circle btn-sm bg-[#DD3811] text-white outline-none"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -35,12 +38,16 @@ const BookingRow = ({ booking,handleDelete }) => {
       <td>${price}</td>
       <td>{date}</td>
       <th>
-        <button className="btn btn-ghost btn-xs">details</button>
+        {
+          status==='confirm'? <span className="text-bold text-sm text-[#dd3811]">Confirm</span> :<button onClick={()=>handleConfirm(_id)} className="btn btn-ghost btn-xs">Pending</button>
+        }
       </th>
     </tr>
   );
 };
-BookingRow.propTypes ={
-    booking: PropTypes.object,
-}
+BookingRow.propTypes = {
+  booking: PropTypes.object,
+  handleDelete: PropTypes.func,
+  handleConfirm: PropTypes.func,
+};
 export default BookingRow;
