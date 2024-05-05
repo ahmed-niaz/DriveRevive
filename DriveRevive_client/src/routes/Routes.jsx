@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/checkout/:id",
-        element: <Checkout />,
+        element: <ProtectedRoutes><Checkout /></ProtectedRoutes>,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/services/${params.id}`),
       },

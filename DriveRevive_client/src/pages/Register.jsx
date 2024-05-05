@@ -7,7 +7,7 @@ import Navbar from "./shared/Navbar";
 
 const Register = () => {
   const { registerUser } = useAuth();
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -37,7 +37,7 @@ const Register = () => {
             Sign Up
           </p>
           <div className="w-3/4 mx-auto space-y-4">
-            <form className="card-body" onSubmit={handleLogin}>
+            <form className="card-body" onSubmit={handleRegister}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -75,11 +75,9 @@ const Register = () => {
                 />
               </div>
               <div className="form-control mt-6">
-                <Link to="/">
-                  <button className="btn glass bg-[#DD3811] text-white font-bold w-full">
-                    Sign up
-                  </button>
-                </Link>
+                <button className="btn glass bg-[#DD3811] text-white font-bold w-full">
+                  Sign up
+                </button>
               </div>
               <div className="divider w-full mx-auto">or Sign In with</div>
               <SocialLogin />

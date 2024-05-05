@@ -1,21 +1,44 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from "../assets/images/login/login.svg";
 import SocialLogin from "../components/SocialLogin";
 import Navbar from "./shared/Navbar";
+import useAuth from "../hooks/useAuth";
+import axios from './../../node_modules/axios';
 
 
 const Login = () => {
-  const handleLogin = e => {
+  const { loginUser } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
-    const email = form.email.value
-    const password = form.password.value
-    const newUser = {email,password}
-    console.log(newUser);
-  }
+    const email = form.email.value;
+    const password = form.password.value;
+
+    loginUser(email, password)
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        const user = {email}
+        // navigate(location?.state ? location.state : "/");
+        
+
+        // get Access TOKEN
+        axios.post(`http://localhost:3000/jwt`,user)
+        .then(res=>{
+          console.log(res.data);
+        })
+
+        // form.reset();
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
     <main>
-     <Navbar/>
+      <Navbar />
       <div className="flex container mx-auto gap-8 ">
         <div className="w-1/2 mx-auto flex justify-center p-24">
           <img src={login} alt="" />
@@ -56,9 +79,12 @@ const Login = () => {
                 </button>
               </div>
               <div className="divider w-full mx-auto">or Sign In with</div>
-              <SocialLogin/>
-              <div className="text-sm text-center">Have an account? 
-              <Link to='/register' className="font-bold text-[#DD3811] ml-1">Sign Up</Link>
+              <SocialLogin />
+              <div className="text-sm text-center">
+                Have an account?
+                <Link to="/register" className="font-bold text-[#DD3811] ml-1">
+                  Sign Up
+                </Link>
               </div>
             </form>
           </div>
